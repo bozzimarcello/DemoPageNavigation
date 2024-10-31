@@ -2,16 +2,34 @@
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
 
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private async void OnNavigateClicked(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-            await Navigation.PushAsync(new SecondPage());
+            base.OnAppearing();
+            itemsList.ItemsSource = null;
+            itemsList.ItemsSource = ItemsManager.Items;
+        }
+
+        private async void OnAddClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ItemDetailPage());
+        }
+
+        private async void OnItemSelected(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.CurrentSelection.FirstOrDefault() is Item selectedItem)
+            {
+                // Clear selection
+                itemsList.SelectedItem = null;
+
+                // Navigate to edit page
+                await Navigation.PushAsync(new ItemDetailPage(selectedItem));
+            }
         }
     }
 
