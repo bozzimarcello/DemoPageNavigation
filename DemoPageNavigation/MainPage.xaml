@@ -4,13 +4,19 @@
              x:Class="DemoPageNavigation.MainPage">
 
     <VerticalStackLayout Spacing="10" Padding="20">
-        <Label 
-            Text="Welcome to Main Page!"
-            FontSize="24"
-            HorizontalOptions="Center" />
+        <Entry 
+            x:Name="userNameEntry"
+            Placeholder="Enter your name"
+            HorizontalOptions="Fill" />
+
+        <Entry 
+            x:Name="userAgeEntry"
+            Placeholder="Enter your age"
+            Keyboard="Numeric"
+            HorizontalOptions="Fill" />
 
         <Button 
-            Text="Go to Second Page"
+            Text="Go to Details Page"
             Clicked="OnNavigateClicked"
             HorizontalOptions="Center" />
     </VerticalStackLayout>
